@@ -4,6 +4,8 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --font-raleway: 'Raleway', sans-serif;
     --root-size: 18px;
+    --sidebar-bg-color: rgb(30, 33, 58);
+    --dashboard-bg-color: rgb(16, 14, 29);
   }
 
   html {

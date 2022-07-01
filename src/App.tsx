@@ -1,12 +1,18 @@
-import { Fragment, useEffect, useState } from 'react';
+// Layout Components
+import Sidebar from '@/layout/Sidebar';
+import Dashboard from '@/layout/Dashboard';
+
+// App Styles
+import { Wrapper } from '@/AppStyles';
 import GlobalStyles from '@/GlobalStyles';
 
 const App = () => {
   return (
-    <Fragment>
-      <h1>Weather App</h1>
+    <Wrapper>
+      <Sidebar />
+      <Dashboard />
       <GlobalStyles />
-    </Fragment>
+    </Wrapper>
   );
 };
 
