@@ -6,6 +6,8 @@ const GlobalStyles = createGlobalStyle`
     --root-size: 18px;
     --sidebar-bg-color: rgb(30, 33, 58);
     --dashboard-bg-color: rgb(16, 14, 29);
+    --button-text-color: rgb(231, 231, 235);
+    --button-bg-color: rgb(110, 112, 122);
   }
 
   html {
@@ -19,6 +21,12 @@ const GlobalStyles = createGlobalStyle`
   * {
     margin:0;
     padding:0;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    font-family: var(--font-raleway);
   }
 `;
 
