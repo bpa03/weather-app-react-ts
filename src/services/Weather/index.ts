@@ -24,6 +24,22 @@ class WeatherAPI extends ServiceBase {
 
     return response.ok && data ? data : Promise.reject(data);
   }
+
+  async getForecastFromCoords(latitude: number, longitude: number) {
+    const url = this.API_URL + this.forecast;
+    const key = '?key=' + this.API_KEY;
+    const coordsParameter = '&q=' + latitude + ',' + longitude;
+    const daysParameter = '&days=7';
+    const formatedUrl = url + key + coordsParameter + daysParameter;
+    const request: Request = new Request(formatedUrl, {
+      method: 'GET',
+      mode: 'cors',
+    });
+    const response = await fetch(request);
+    const data: Wheather = await response.json();
+
+    return response.ok && data ? data : Promise.reject(data);
+  }
 }
 
 export default new WeatherAPI();
