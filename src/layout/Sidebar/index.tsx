@@ -1,40 +1,32 @@
-import { FC } from 'react';
-import { BiTargetLock } from 'react-icons/all';
-// Services
-import { Current } from '@/services/Weather/interfaces';
+import { FC, useMemo } from 'react';
 // Hooks
 import { useStore } from '@/context';
-// Generic components
-import Button from '@/components/Button';
 // Assets
 import bgImage from 'assets/Cloud-background.png';
-
-interface SidebarProps {
-  current: Current;
-}
+// Sidebar components
+import SidebarHeader from './SidebarHeader';
+import SidebarBody from './SidebarBody';
 
 // Styles
 import { Aside, Container, Image } from './styles';
 
-const Sidebar: FC<SidebarProps> = () => {
+const Sidebar: FC = () => {
   const store = useStore();
+  const { weather, loading } = store;
 
-  const { weather } = store;
   const { location, current } = weather;
 
   return (
     <Aside>
       <Image src={bgImage} />
       <Container>
-        <div>
-          <Button>Search for places</Button>
-          <Button type="icon">
-            <BiTargetLock
-              title="Target"
-              size={22}
-            />
-          </Button>
-        </div>
+        <SidebarHeader />
+        {!loading && Object.keys(weather).length && (
+          <SidebarBody
+            location={location}
+            current={current}
+          />
+        )}
       </Container>
     </Aside>
   );
