@@ -8,6 +8,8 @@ const GlobalStyles = createGlobalStyle`
     --dashboard-bg-color: rgb(16, 14, 29);
     --button-text-color: rgb(231, 231, 235);
     --button-bg-color: rgb(110, 112, 122);
+    --unit-text-color: rgb(160, 159, 177);
+    --location-text-color: rgb(136, 134, 157);
   }
 
   html {
