@@ -27,7 +27,7 @@ const days: Mapper = {
   6: 'Sat',
 };
 
-export function formatDate(input: string): string {
+export function formatDate(input: string | Date): string {
   const date = new Date(input);
   const actualDate = date.getDate();
   const actualMonth = months[date.getMonth()];
