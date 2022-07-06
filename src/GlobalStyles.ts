@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
     --button-bg-color: rgb(110, 112, 122);
     --unit-text-color: rgb(160, 159, 177);
     --location-text-color: rgb(136, 134, 157);
+    --yellow: rgb(255, 236, 101);
   }
 
   html {
@@ -29,6 +30,11 @@ const GlobalStyles = createGlobalStyle`
     outline: none;
     border: none;
     font-family: var(--font-raleway);
+  }
+
+  ul {
+    list-style-type: none;
+    list-style: none;
   }
 `;
 
