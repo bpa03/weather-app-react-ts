@@ -86,3 +86,13 @@ export interface Location {
   localtime_epoch: number;
   localtime: string;
 }
+
+export interface Search {
+  id:      number;
+  name:    string;
+  region:  string;
+  country: string;
+  lat:     number;
+  lon:     number;
+  url:     string;
+}
