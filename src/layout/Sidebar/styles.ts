@@ -11,6 +11,7 @@ export const Aside = styled.aside`
   background-color: var(--sidebar-bg-color);
   padding: 2.556rem 2.333rem;
   position: relative;
+  overflow: hidden;
 `;
 
 export const Image = styled.img`
