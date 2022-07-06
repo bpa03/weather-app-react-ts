@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
     --unit-text-color: rgb(160, 159, 177);
     --location-text-color: rgb(136, 134, 157);
     --yellow: rgb(255, 236, 101);
+    --input-color: rgb(97, 100, 117);
   }
 
   html {
@@ -35,6 +36,13 @@ const GlobalStyles = createGlobalStyle`
   ul {
     list-style-type: none;
     list-style: none;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-family: var(--font-raleway);
   }
 `;
 
