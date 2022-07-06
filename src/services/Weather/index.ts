@@ -1,12 +1,14 @@
 import ServiceBase from '../Base';
-import { Wheather } from './interfaces';
+import { Search, Wheather } from './interfaces';
 
 class WeatherAPI extends ServiceBase {
   declare forecast: string;
+  declare search: string;
 
   constructor() {
     super();
     this.forecast = '/forecast.json';
+    this.search = '/search.json';
   }
 
   async getForecastFromCity(city: string): Promise<Wheather> {
@@ -38,6 +40,20 @@ class WeatherAPI extends ServiceBase {
     const response = await fetch(request);
     const data: Wheather = await response.json();
 
+    return response.ok && data ? data : Promise.reject(data);
+  }
+
+  async getCityFromSearch(input: string) {
+    const url = this.API_URL + this.search;
+    const key = '?key=' + this.API_KEY;
+    const search = '&q=' + input;
+    const formatedUrl = url + key + search;
+    const request: Request = new Request(formatedUrl, {
+      method: 'GET',
+      mode: 'cors',
+    });
+    const response = await fetch(request);
+    const data: Search[] = await response.json();
     return response.ok && data ? data : Promise.reject(data);
   }
 }
