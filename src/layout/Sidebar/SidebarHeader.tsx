@@ -1,13 +1,17 @@
-import { FC } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import { BiCurrentLocation } from 'react-icons/all';
 import Button from '@/components/Button';
 
 // Styles
 import { Row } from './styles';
 
-const SidebarHeader: FC = () => (
+interface SidebarHeaderProps {
+  openMenu: VoidFunction;
+}
+
+const SidebarHeader: FC<SidebarHeaderProps> = ({ openMenu }) => (
   <Row justifyContent="space-between">
-    <Button>Search for places</Button>
+    <Button handleClick={openMenu}>Search for places</Button>
     <Button type="icon">
       <BiCurrentLocation
         title="Current Location"
