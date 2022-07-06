@@ -18,6 +18,7 @@ const ButtonStyles: Mapper = {
     padding: 0.556rem 1rem;
     border-radius: 2px;
     font-size: 0.8889rem;
+    cursor: pointer;
   `,
 };
 
