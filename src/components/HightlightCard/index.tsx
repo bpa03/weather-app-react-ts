@@ -14,7 +14,7 @@ import {
 
 interface HightlightCardProps {
   title: string;
-  value?: number;
+  value: number;
   unit?: string;
 }
 
@@ -25,7 +25,7 @@ const HightlightCard: FC<HightlightCardProps> = ({ title, value, unit }) => {
       <HightlightCardBody>
         <HightlightCardValue>{value}</HightlightCardValue>
         <HightlightCardUnit>{unit}</HightlightCardUnit>
-        {unit === '%' && <HightlightCardHumidityIndicator />}
+        {unit === '%' && <HightlightCardHumidityIndicator size={value} />}
         {unit === 'mph' && (
           <HightlightCardIcon type="icon">
             <BiWind
