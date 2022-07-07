@@ -1,7 +1,16 @@
-import { FC } from 'react';
+import { FC, useState, FormEvent, ChangeEvent } from 'react';
 import { MdClose } from 'react-icons/all';
+// Store and Dispatch
+import { useStore, useDispatch } from '@/context';
+// Thunk action creators
+import { thunkGetWeather } from '@/context/weather/weather.thunk';
+// Interfaces
+import { Search } from '@/services/Weather/interfaces';
+// Services
+import WeatherAPI from '@/services/Weather';
 //Components
 import Button from '@/components/Button';
+import Loader from '../Loader';
 
 // Styles
 import {
@@ -14,7 +23,7 @@ import {
   SearcherButton,
   SearcherInputIcon,
   SearcherList,
-  SearcherListItem
+  SearcherListItem,
 } from './styles';
 
 interface SearcherProps {
@@ -23,6 +32,40 @@ interface SearcherProps {
 }
 
 const Searcher: FC<SearcherProps> = ({ isOpen, closeMenu }) => {
+  const dispatch = useDispatch();
+  const { weather } = useStore();
+  const [input, setInput] = useState<string>('');
+  const [{ loading, data }, setValues] = useState<{
+    loading: boolean;
+    data: Search[];
+  }>({
+    data: [],
+    loading: false,
+  });
+
+  const handleSetWeatherClick = (city: string) => {
+    if (weather.location.name && city === weather.location.name) return;
+
+    thunkGetWeather(dispatch, city);
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (input === '') return;
+    setValues((prev) => ({ ...prev, loading: true }));
+    try {
+      const response = await WeatherAPI.getCityFromSearch(input);
+      setValues((prev) => ({ ...prev, loading: false, data: response }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { target } = e;
+    setInput(target.value);
+  };
+
   return (
     <Container open={isOpen}>
       <SearcherCloseMenu>
@@ -37,10 +80,12 @@ const Searcher: FC<SearcherProps> = ({ isOpen, closeMenu }) => {
         </Button>
       </SearcherCloseMenu>
       <SearcherWrapperForm>
-        <SearcherForm>
+        <SearcherForm onSubmit={handleSubmit}>
           <SearcherFormGroup>
             <SearcherInputIcon size={17} />
             <SearcherInput
+              onChange={handleChange}
+              value={input}
               type="text"
               placeholder="Search Location"
             />
@@ -49,7 +94,17 @@ const Searcher: FC<SearcherProps> = ({ isOpen, closeMenu }) => {
         </SearcherForm>
       </SearcherWrapperForm>
       <SearcherList>
-        <SearcherListItem>London</SearcherListItem>
+        {loading && <Loader size="4rem" />}
+        {!loading &&
+          !!data.length &&
+          data.map(({ name, id }) => (
+            <SearcherListItem
+              key={id}
+              onClick={() => handleSetWeatherClick(name)}
+            >
+              {name}
+            </SearcherListItem>
+          ))}
       </SearcherList>
     </Container>
   );

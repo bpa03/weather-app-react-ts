@@ -7,8 +7,9 @@ interface StyledContainerProps {
 
 export const Container = styled.div<StyledContainerProps>`
   min-height: max(100vh, 759px);
-  padding: 2.556rem 2.333rem;
+  max-height: max(100vh, 759px);
   overflow-y: scroll;
+  padding: 2.556rem 2.333rem;
   background-color: var(--sidebar-bg-color);
   width: 31.875%;
   z-index: 1;
@@ -75,15 +76,16 @@ export const SearcherButton = styled.button`
 `;
 
 export const SearcherList = styled.ul`
-  margin-top: 1rem;
+  margin-top: 2rem;
 `;
+
 export const SearcherListItem = styled.li`
   padding: 1.17778rem 0.666rem;
   cursor: pointer;
   font-weight: 500;
   color: var(--button-text-color);
   border: 1px solid transparent;
-  transition: border .3s;
+  transition: border 0.3s;
 
   &:hover {
     border: 1px solid var(--input-color);
