@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { forwardRef, CSSProperties } from 'react';
 // Interfaces
 import { Day } from '@/services/Weather/interfaces';
 // Assets
@@ -6,7 +6,7 @@ import clearImage from 'assets/Shower.png';
 import { formatDate } from '@/lib/formatDate';
 // Styles
 import {
-  Wrapper,
+  Item,
   Date,
   WeatherCardImage,
   WeatherCardImageWrapper,
@@ -18,27 +18,33 @@ import {
 interface WeatherCardProps {
   day: Day;
   date: Date;
+  styles?: CSSProperties;
 }
 
-const WeatherCard: FC<WeatherCardProps> = ({ day, date }) => {
-  const { mintemp_c, maxtemp_c } = day;
-  const formatedDate = formatDate(date);
+const WeatherCard = forwardRef<HTMLLIElement, WeatherCardProps>(
+  ({ day, date, styles }, ref) => {
+    const { mintemp_c, maxtemp_c } = day;
+    const formatedDate = formatDate(date);
 
-  return (
-    <Wrapper>
-      <Date>{formatedDate}</Date>
-      <WeatherCardImageWrapper>
-        <WeatherCardImage
-          src={clearImage}
-          alt="card-image.png"
-        />
-      </WeatherCardImageWrapper>
-      <WeatherCardTemperature>
-        <Max>{maxtemp_c}°C</Max>
-        <Min>{mintemp_c}°C</Min>
-      </WeatherCardTemperature>
-    </Wrapper>
-  );
-};
+    return (
+      <Item
+        ref={ref}
+        style={styles ? styles : {}}
+      >
+        <Date>{formatedDate}</Date>
+        <WeatherCardImageWrapper>
+          <WeatherCardImage
+            src={clearImage}
+            alt="card-image.png"
+          />
+        </WeatherCardImageWrapper>
+        <WeatherCardTemperature>
+          <Max>{maxtemp_c}°C</Max>
+          <Min>{mintemp_c}°C</Min>
+        </WeatherCardTemperature>
+      </Item>
+    );
+  }
+);
 
 export default WeatherCard;

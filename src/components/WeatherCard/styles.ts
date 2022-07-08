@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Item = styled.li`
   background-color: var(--sidebar-bg-color);
   font-size: 0.889rem;
   font-weight: 500;
