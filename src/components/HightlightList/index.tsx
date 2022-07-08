@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { Current } from '@/services/Weather/interfaces';
 // components
 import HightlightCard from '../HightlightCard';
+import useArrayRef from '@/hooks/useArrayRef';
 
 // Styles
 import { List, ListTitle } from './styles';
@@ -14,10 +15,8 @@ interface HightlightListProps {
 
 const HightlightList: FC<HightlightListProps> = ({ current }) => {
   const tl = useMemo(() => gsap.timeline(), []);
-  const cardRefs = useRef<HTMLLIElement[]>([]);
+  const [cardRefs, addCardRef] = useArrayRef<HTMLLIElement>();
   const titleRef = useRef<HTMLHeadingElement>(null);
-
-  const addCardRef = (ref: HTMLLIElement) => ref && cardRefs.current.push(ref);
 
   useEffect(() => {
     cardRefs.current.forEach((ref) => {
