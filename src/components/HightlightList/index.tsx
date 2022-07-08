@@ -8,7 +8,7 @@ import { Current } from '@/services/Weather/interfaces';
 import HightlightCard from '../HightlightCard';
 
 // Styles
-import { List, ListTitle } from './styles';
+import { List, ListTitle, Container } from './styles';
 
 interface HightlightListProps {
   current: Current;
@@ -16,8 +16,8 @@ interface HightlightListProps {
 
 const HightlightList: FC<HightlightListProps> = ({ current }) => {
   const tl = useMemo(() => gsap.timeline(), []);
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const [cardRefs, addRef] = useArrayRef<HTMLLIElement>();
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     cardRefs.current.forEach((ref) => {
@@ -44,7 +44,7 @@ const HightlightList: FC<HightlightListProps> = ({ current }) => {
   );
 
   return (
-    <div>
+    <Container>
       <div style={{ overflow: 'hidden' }}>
         <ListTitle
           ref={titleRef}
@@ -83,7 +83,7 @@ const HightlightList: FC<HightlightListProps> = ({ current }) => {
           styles={{ opacity: 0 }}
         />
       </List>
-    </div>
+    </Container>
   );
 };
 

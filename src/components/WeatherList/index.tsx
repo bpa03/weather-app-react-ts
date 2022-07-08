@@ -1,5 +1,7 @@
 import { FC, useRef, useMemo, useEffect, memo, CSSProperties } from 'react';
 import gsap from 'gsap';
+// Hooks
+import useArrayRef from '@/hooks/useArrayRef';
 // Interfaces
 import { Forecastday } from '@/services/Weather/interfaces';
 // Components
@@ -13,9 +15,7 @@ interface WeatherListProps {
 
 const WeatherList: FC<WeatherListProps> = ({ forecast }) => {
   const tl = useMemo(() => gsap.timeline(), []);
-  const cardRefs = useRef<HTMLLIElement[]>([]);
-
-  const addRef = (ref: HTMLLIElement) => ref && cardRefs.current.push(ref);
+  const [cardRefs, addRef] = useArrayRef<HTMLLIElement>();
 
   useEffect(() => {
     cardRefs.current.forEach((ref) => {

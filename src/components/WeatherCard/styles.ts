@@ -16,11 +16,12 @@ export const Date = styled.p`
 export const WeatherCardImageWrapper = styled.div`
   text-align: center;
   margin-top: .5556rem;
+  height: 3.5rem;
   margin-bottom: 1.7222rem;
 `;
 
 export const WeatherCardImage = styled.img`
-  width: 3rem;
+  width: 3.5rem;
   margin: 0 auto;
 `;
 

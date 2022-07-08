@@ -6,14 +6,14 @@ interface StyledContainerProps {
 }
 
 export const Container = styled.div<StyledContainerProps>`
-  min-height: max(100vh, 759px);
-  max-height: max(100vh, 759px);
+  min-height: 100%;
+  max-height: 100%;
   overflow-y: scroll;
   padding: 2.556rem 2.333rem;
+  width: 100%;
   background-color: var(--sidebar-bg-color);
-  width: 31.875%;
   z-index: 1;
-  position: fixed;
+  position: absolute;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.4s ease;
   left: 0;

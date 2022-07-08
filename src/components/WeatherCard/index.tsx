@@ -2,6 +2,7 @@ import { forwardRef, CSSProperties } from 'react';
 // Interfaces
 import { Day } from '@/services/Weather/interfaces';
 // Assets
+import clearImage from 'assets/Shower.png';
 import getStateImage from '@/lib/getStateImage';
 import { formatDate } from '@/lib/formatDate';
 // Styles
