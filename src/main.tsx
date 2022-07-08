@@ -6,9 +6,7 @@ import App from '@/App';
 import WeatherProvider from '@/context';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <WeatherProvider>
-      <App />
-    </WeatherProvider>
-  </StrictMode>
+  <WeatherProvider>
+    <App />
+  </WeatherProvider>
 );
