@@ -2,7 +2,7 @@ import { forwardRef, CSSProperties } from 'react';
 // Interfaces
 import { Day } from '@/services/Weather/interfaces';
 // Assets
-import clearImage from 'assets/Shower.png';
+import getStateImage from '@/lib/getStateImage';
 import { formatDate } from '@/lib/formatDate';
 // Styles
 import {
@@ -23,7 +23,8 @@ interface WeatherCardProps {
 
 const WeatherCard = forwardRef<HTMLLIElement, WeatherCardProps>(
   ({ day, date, styles }, ref) => {
-    const { mintemp_c, maxtemp_c } = day;
+    const { mintemp_c, maxtemp_c, condition } = day;
+    const { code } = condition;
     const formatedDate = formatDate(date);
 
     return (
@@ -34,7 +35,7 @@ const WeatherCard = forwardRef<HTMLLIElement, WeatherCardProps>(
         <Date>{formatedDate}</Date>
         <WeatherCardImageWrapper>
           <WeatherCardImage
-            src={clearImage}
+            src={getStateImage(code)}
             alt="card-image.png"
           />
         </WeatherCardImageWrapper>

@@ -1,5 +1,7 @@
 import { FC, useMemo, useRef, useEffect, memo } from 'react';
 import gsap from 'gsap';
+// Hooks
+import useArrayRef from '@/hooks/useArrayRef';
 // Interfaces
 import { Current } from '@/services/Weather/interfaces';
 // components
@@ -14,10 +16,8 @@ interface HightlightListProps {
 
 const HightlightList: FC<HightlightListProps> = ({ current }) => {
   const tl = useMemo(() => gsap.timeline(), []);
-  const cardRefs = useRef<HTMLLIElement[]>([]);
   const titleRef = useRef<HTMLHeadingElement>(null);
-
-  const addCardRef = (ref: HTMLLIElement) => ref && cardRefs.current.push(ref);
+  const [cardRefs, addRef] = useArrayRef<HTMLLIElement>();
 
   useEffect(() => {
     cardRefs.current.forEach((ref) => {
@@ -58,28 +58,28 @@ const HightlightList: FC<HightlightListProps> = ({ current }) => {
           title="Wind status"
           value={data.wind}
           unit="mph"
-          ref={addCardRef}
+          ref={addRef}
           styles={{ opacity: 0 }}
         />
         <HightlightCard
           title="Humidity"
           value={data.humidity}
           unit="%"
-          ref={addCardRef}
+          ref={addRef}
           styles={{ opacity: 0 }}
         />
         <HightlightCard
           title="Visibility"
           value={data.visibility}
           unit="miles"
-          ref={addCardRef}
+          ref={addRef}
           styles={{ opacity: 0 }}
         />
         <HightlightCard
           title="Air Pressure"
           value={data.airPressure}
           unit="mb"
-          ref={addCardRef}
+          ref={addRef}
           styles={{ opacity: 0 }}
         />
       </List>
