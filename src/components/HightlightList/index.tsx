@@ -7,7 +7,7 @@ import HightlightCard from '../HightlightCard';
 import useArrayRef from '@/hooks/useArrayRef';
 
 // Styles
-import { List, ListTitle } from './styles';
+import { List, ListTitle, Container } from './styles';
 
 interface HightlightListProps {
   current: Current;
@@ -43,7 +43,7 @@ const HightlightList: FC<HightlightListProps> = ({ current }) => {
   );
 
   return (
-    <div>
+    <Container>
       <div style={{ overflow: 'hidden' }}>
         <ListTitle
           ref={titleRef}
@@ -82,7 +82,7 @@ const HightlightList: FC<HightlightListProps> = ({ current }) => {
           styles={{ opacity: 0 }}
         />
       </List>
-    </div>
+    </Container>
   );
 };
 

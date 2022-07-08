@@ -45,6 +45,7 @@ const Searcher: FC<SearcherProps> = ({ isOpen, closeMenu }) => {
 
   const handleSetWeatherClick = (city: string) => {
     if (weather.location.name && city === weather.location.name) return;
+    closeMenu();
 
     thunkGetWeather(dispatch, city);
   };

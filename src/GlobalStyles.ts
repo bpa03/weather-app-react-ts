@@ -4,6 +4,7 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --font-raleway: 'Raleway', sans-serif;
     --root-size: 18px;
+    --root-size-responsibe: 16px;
     --sidebar-bg-color: rgb(30, 33, 58);
     --dashboard-bg-color: rgb(16, 14, 29);
     --button-text-color: rgb(231, 231, 235);
@@ -17,7 +18,11 @@ const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-family: var(--font-raleway);
-    font-size: var(--root-size);
+    font-size: var(--root-size-responsibe);
+
+    @media only screen and (min-width: 765px) {
+      font-size: var(--root-size);
+    }
   }
   *, *:before, *:after {
     box-sizing: inherit;

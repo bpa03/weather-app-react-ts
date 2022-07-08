@@ -43,7 +43,7 @@ const SidebarBody: FC<SidebarBodyProps> = ({ current, location }) => {
       </Row>
       <Row justifyContent="center">
         <div>
-          <Indicator>{temp_c}</Indicator>
+          <Indicator>{temp_c.toFixed(0)}</Indicator>
           <Unit>℃</Unit>
         </div>
       </Row>
