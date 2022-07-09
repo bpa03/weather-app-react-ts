@@ -9,9 +9,15 @@ interface RowStyledProps {
 
 export const Aside = styled.aside`
   background-color: var(--sidebar-bg-color);
-  padding: 2.556rem 2.333rem;
+  /* padding: 2.556rem 2.333rem; */
+  padding: 1rem .61rem 2.556rem 1rem;
   position: relative;
   overflow: hidden;
+
+  @media only screen and (max-width: 1280px) {
+    min-height: 100vh;
+    width: 100vw;
+  }
 `;
 
 export const Image = styled.img`
@@ -36,7 +42,7 @@ export const SidebarImage = styled.img`
   width: 11.22rem;
   height: 10.5rem;
   object-fit: contain;
-  margin: 0 auto 0 3.767rem;
+  margin: 0 2rem 0 0;
 `;
 
 export const Indicator = styled.span`
@@ -54,6 +60,7 @@ export const Unit = styled.span`
 export const Condition = styled.span`
   font-weight: 600;
   font-size: 2rem;
+  text-align: center;
   color: var(--unit-text-color);
 `;
 

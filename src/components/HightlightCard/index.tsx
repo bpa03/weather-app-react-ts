@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { CSSProperties, FC, forwardRef } from 'react';
 import { BiWind } from 'react-icons/all';
 
 // Styles
@@ -14,29 +14,35 @@ import {
 
 interface HightlightCardProps {
   title: string;
-  value?: number;
+  value: number;
   unit?: string;
+  styles?: CSSProperties;
 }
 
-const HightlightCard: FC<HightlightCardProps> = ({ title, value, unit }) => {
-  return (
-    <HightlightCardBase>
-      <HightlightCardTitle>{title}</HightlightCardTitle>
-      <HightlightCardBody>
-        <HightlightCardValue>{value}</HightlightCardValue>
-        <HightlightCardUnit>{unit}</HightlightCardUnit>
-        {unit === '%' && <HightlightCardHumidityIndicator />}
-        {unit === 'mph' && (
-          <HightlightCardIcon type="icon">
-            <BiWind
-              title="Wind"
-              size={22}
-            />
-          </HightlightCardIcon>
-        )}
-      </HightlightCardBody>
-    </HightlightCardBase>
-  );
-};
+const HightlightCard = forwardRef<HTMLLIElement, HightlightCardProps>(
+  ({ title, value, unit, styles }, ref) => {
+    return (
+      <HightlightCardBase
+        ref={ref}
+        style={styles ? styles : {}}
+      >
+        <HightlightCardTitle>{title}</HightlightCardTitle>
+        <HightlightCardBody>
+          <HightlightCardValue>{value}</HightlightCardValue>
+          <HightlightCardUnit>{unit}</HightlightCardUnit>
+          {unit === '%' && <HightlightCardHumidityIndicator size={value} />}
+          {unit === 'mph' && (
+            <HightlightCardIcon type="icon">
+              <BiWind
+                title="Wind"
+                size={22}
+              />
+            </HightlightCardIcon>
+          )}
+        </HightlightCardBody>
+      </HightlightCardBase>
+    );
+  }
+);
 
 export default HightlightCard;

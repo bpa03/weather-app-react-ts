@@ -44,7 +44,7 @@ class WeatherAPI extends ServiceBase {
   }
 
   async getCityFromSearch(input: string) {
-    const url = this.API_URL + this.forecast;
+    const url = this.API_URL + this.search;
     const key = '?key=' + this.API_KEY;
     const search = '&q=' + input;
     const formatedUrl = url + key + search;

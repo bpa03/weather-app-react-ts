@@ -1,17 +1,38 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useRef, useEffect, memo } from 'react';
+import gsap from 'gsap';
+// Hooks
+import useArrayRef from '@/hooks/useArrayRef';
 // Interfaces
 import { Current } from '@/services/Weather/interfaces';
 // components
 import HightlightCard from '../HightlightCard';
 
 // Styles
-import { List, ListTitle } from './styles';
+import { List, ListTitle, Container } from './styles';
 
 interface HightlightListProps {
   current: Current;
 }
 
 const HightlightList: FC<HightlightListProps> = ({ current }) => {
+  const tl = useMemo(() => gsap.timeline(), []);
+  const [cardRefs, addRef] = useArrayRef<HTMLLIElement>();
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    cardRefs.current.forEach((ref) => {
+      tl.fromTo(
+        ref,
+        { opacity: 0, translateY: -10 },
+        { opacity: 1, translateY: 0 }
+      );
+    });
+
+    tl.to(titleRef.current, { translateY: 0 });
+
+    tl.delay(0.2);
+  }, []);
+
   const data = useMemo(
     () => ({
       humidity: current.humidity,
@@ -21,34 +42,49 @@ const HightlightList: FC<HightlightListProps> = ({ current }) => {
     }),
     [current]
   );
-  
+
   return (
-    <div>
-      <ListTitle>Today’s Hightlights </ListTitle>
+    <Container>
+      <div style={{ overflow: 'hidden' }}>
+        <ListTitle
+          ref={titleRef}
+          style={{ transform: 'translateY(25px)' }}
+        >
+          Today’s Hightlights{' '}
+        </ListTitle>
+      </div>
       <List>
         <HightlightCard
           title="Wind status"
           value={data.wind}
           unit="mph"
+          ref={addRef}
+          styles={{ opacity: 0 }}
         />
         <HightlightCard
           title="Humidity"
           value={data.humidity}
           unit="%"
+          ref={addRef}
+          styles={{ opacity: 0 }}
         />
         <HightlightCard
           title="Visibility"
           value={data.visibility}
           unit="miles"
+          ref={addRef}
+          styles={{ opacity: 0 }}
         />
         <HightlightCard
           title="Air Pressure"
           value={data.airPressure}
           unit="mb"
+          ref={addRef}
+          styles={{ opacity: 0 }}
         />
       </List>
-    </div>
+    </Container>
   );
 };
 
-export default HightlightList;
+export default memo(HightlightList);

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Item = styled.li`
   background-color: var(--sidebar-bg-color);
   font-size: 0.889rem;
   font-weight: 500;
@@ -16,11 +16,12 @@ export const Date = styled.p`
 export const WeatherCardImageWrapper = styled.div`
   text-align: center;
   margin-top: .5556rem;
+  height: 3.5rem;
   margin-bottom: 1.7222rem;
 `;
 
 export const WeatherCardImage = styled.img`
-  width: 3rem;
+  width: 3.5rem;
   margin: 0 auto;
 `;
 

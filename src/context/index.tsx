@@ -13,8 +13,8 @@ interface ProviderProps {
   children: ReactNode;
 }
 
-type Dispatch = DispatchType<ReducerAction<ReducerType>>;
-type ContextValue = [State, Dispatch];
+export type Dispatch = DispatchType<ReducerAction<ReducerType>>;
+export type ContextValue = [State, Dispatch];
 const WeatherContext = createContext<ContextValue | null>(null);
 
 const intialState = {
